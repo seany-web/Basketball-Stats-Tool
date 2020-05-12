@@ -1,0 +1,15 @@
+create a new list of dictionaries to store cleaned data
+
+CLEAN DATA FUNCTION:
+_____________________
+
+loop through ingested data
+    create new dictionary object
+    add name to new dictionary
+    add guardians to new dictionary
+    add experience as boolean to new dictionary
+    add height in inches as integer to new dictionary
+    append new dictionary to cleaned data
+
+
+
