@@ -1,4 +1,5 @@
 create a new list of dictionaries to store cleaned data
+create teams
 
 CLEAN DATA FUNCTION:
 _____________________
@@ -12,4 +13,36 @@ loop through ingested data
     append new dictionary to cleaned data
 
 
+BALANCE TEAMS FUNCTION:
+_________________________
 
+find out the maximum team size so teams are balanced
+get maximum number of experienced players on each team
+get maximum number of inexperienced players on each team
+
+loop through clean player list
+    find out if current player in list is experienced
+    if team 1 has room in squad
+        add 1 to team 1 squad size
+        if player is not experienced AND there is room in squad
+            put player in team 1
+            add 1 to inexperienced players
+        else if player is experienced and there is room in squad
+            put player in team 1
+            add 1 to experienced players
+    else if team 1 is full but team 2 has room in squad
+        add 1 to team 2 squad size
+        if player is not experienced AND there is room in squad
+            put player in team 2
+            add 1 to inexperienced players
+        else if player is experienced and there is room in squad
+            put player in team 2
+            add 1 to experienced players
+    else
+        add 1 to team 3 squad size
+        if player is experienced
+            put player in team 3
+            add 1 to experienced players
+        else
+            put player in team 3
+            add 1 to inexperienced players
