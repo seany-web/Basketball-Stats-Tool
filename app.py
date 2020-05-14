@@ -36,6 +36,8 @@ team_3 = {
 }
 
 
+
+
 def clean_data():
     for player in PLAYERS:
         cleaned_player = {
@@ -49,6 +51,7 @@ def clean_data():
         cleaned_player['height'] = int(player['height'].split(' ')[0])
         cleaned_player_data.append(cleaned_player)
 
+#This function sorts players into team based on a teams squad size an the amount of experienced vs inexperienced players
 
 def balance_teams():
     max_squad_size = len(PLAYERS) / len(TEAMS)
@@ -79,6 +82,7 @@ def balance_teams():
                 continue
 
 
+#This function takes a player and a team and adds the given player to the team while updated team stats
 
 def add_player_to_team(player, team):
     team['total_squad_size'] += 1
@@ -108,21 +112,22 @@ def get_num_of_inexperienced_players():
     return sum / len(TEAMS)
 
 def display_main_menu():
-    print('---- MENU----')
-    print('Here are you choices:\n')
-    print('1) Display Team Stats')
-    print('2) Quit')
+    print('\n----MENU----\n')
+    print('Here are you choices:')
+    print(' 1) Display Team Stats')
+    print(' 2) Quit')
 
 
 def display_submenu():
-    print('1) Panthers')
-    print('2) Bandits')
-    print('3) Warriors')
+    print('\nPlease select a team from the menu below\n')
+    print(' 1) Panthers')
+    print(' 2) Bandits')
+    print(' 3) Warriors')
 
 
 def display_team_stats(team):
     #show team name
-    print('Team: {0} Stats'.format(team['name']))
+    print('\nTeam: {0} Stats'.format(team['name']))
     print('-' * 20)
     #show total players
     print('Total Players: {0}'.format(team['total_squad_size']))
@@ -131,12 +136,13 @@ def display_team_stats(team):
     #show total inexperienced players
     print('Total inexperienced: {0}'.format(team['total_inexperienced_players']))
     #calcuate and show average height
-    print('Average height: {0}'.format(team['total_height'] / team['total_squad_size']))
+    print('Average height: {0}\n'.format(team['total_height'] / team['total_squad_size']))
     #show players on team
-    print(', '.join(team['players']))
+    players_string = ', '.join(team['players'])
+    print('Players on Team:\n  {0}\n'.format(players_string))
     #show guardians of players on team
-    print(', '.join(team['guardians']))
-
+    guardians_string = ', '.join(team['guardians'])
+    print('Guardians:\n  {0}\n'.format(guardians_string))
 
     input('Press any key to continue...')
 
@@ -151,14 +157,14 @@ if __name__ == "__main__":
     while(True):
         display_main_menu()
         #prompt user for selection
-        mainmenu_selection = input('Enter an option > ')
+        mainmenu_selection = input('\nEnter an option > ')
         #if submenu selected
         if mainmenu_selection == '1':
             #show submenu
             while (True):   
                 display_submenu()
                 #prompt user for selection
-                submenu_selection = input('Enter an option > ')
+                submenu_selection = input('\nEnter an option > ')
                 #if valid selection
                     #display team info
                     #exit sub menu
@@ -174,13 +180,13 @@ if __name__ == "__main__":
                 #else
                 else:
                     #prompt user for valid selection
-                    print('That is not a valid selection. Please try again')
+                    print('\nThat is not a valid selection. Please try again\n')
         #if quit selected
         elif mainmenu_selection == '2':
             #exit gracefully
-            print('Exiting application. Goodbye!')
+            print('\nExiting application. Goodbye!\n')
             break
         #else
         else:
             #prompt user for valid selection
-            print('That is not a valid selection. Please try again')
+            print('\nThat is not a valid selection. Please try again\n')
