@@ -21,28 +21,24 @@ get maximum number of experienced players on each team
 get maximum number of inexperienced players on each team
 
 loop through clean player list
-    find out if current player in list is experienced
     if team 1 has room in squad
-        add 1 to team 1 squad size
-        if player is not experienced AND there is room in squad
-            put player in team 1
-            add 1 to inexperienced players
-        else if player is experienced and there is room in squad
-            put player in team 1
-            add 1 to experienced players
-    else if team 1 is full but team 2 has room in squad
-        add 1 to team 2 squad size
-        if player is not experienced AND there is room in squad
-            put player in team 2
-            add 1 to inexperienced players
-        else if player is experienced and there is room in squad
-            put player in team 2
-            add 1 to experienced players
-    else
-        add 1 to team 3 squad size
-        if player is experienced
-            put player in team 3
-            add 1 to experienced players
-        else
-            put player in team 3
-            add 1 to inexperienced players
+        if current player is experienced and team 1 still has room for experienced players
+            add player to team 1
+        otherwise if current player is NOT experienced and team 1 still has room for inexperienced players
+            add player to team 1
+        otherwise if current player cannot fit in this squad, try next team
+        
+
+ADD PLAYER TO TEAM FUNCTION:
+______________________________
+
+increase team squad size
+add player to teams player list
+add player height to teams total height
+if player is experienced
+    add 1 to experienced player count
+otherwise if player is NOT experienced
+    add 1 to inexperienced player count
+add players guardian(s) to team guardians list
+
+

@@ -56,7 +56,6 @@ def balance_teams():
     inexperienced_players_per_team = get_num_of_inexperienced_players()
 
     for player in cleaned_player_data:
-        # import pdb; pdb.set_trace()
         if team_1['total_squad_size'] < max_squad_size:
             if player['experience'] == True and team_1['total_experienced_players'] < experienced_players_per_team:            
                 add_player_to_team(player, team_1)
