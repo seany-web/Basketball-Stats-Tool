@@ -12,7 +12,7 @@ team_1 = {
     'total_inexperienced_players': 0,
     'total_height': 0,
     'players': [],
-    'guardians': [] 
+    'guardians': []
 }
 
 team_2 = {
@@ -36,8 +36,6 @@ team_3 = {
 }
 
 
-
-
 def clean_data():
     for player in PLAYERS:
         cleaned_player = {
@@ -51,7 +49,6 @@ def clean_data():
         cleaned_player['height'] = int(player['height'].split(' ')[0])
         cleaned_player_data.append(cleaned_player)
 
-#This function sorts players into team based on a teams squad size an the amount of experienced vs inexperienced players
 
 def balance_teams():
     max_squad_size = len(PLAYERS) / len(TEAMS)
@@ -60,35 +57,34 @@ def balance_teams():
 
     for player in cleaned_player_data:
         if team_1['total_squad_size'] < max_squad_size:
-            if player['experience'] == True and team_1['total_experienced_players'] < experienced_players_per_team:            
+            if player['experience'] is True and team_1['total_experienced_players'] < experienced_players_per_team:
                 add_player_to_team(player, team_1)
                 continue
-            elif player['experience'] == False and team_1['total_inexperienced_players'] < inexperienced_players_per_team:
+            elif player['experience'] is False and team_1['total_inexperienced_players'] < inexperienced_players_per_team:
                 add_player_to_team(player, team_1)
                 continue
         if team_2['total_squad_size'] < max_squad_size:
-            if player['experience'] == True and team_2['total_experienced_players'] < experienced_players_per_team:            
+            if player['experience'] is True and team_2['total_experienced_players'] < experienced_players_per_team:
                 add_player_to_team(player, team_2)
                 continue
-            elif player['experience'] == False and team_2['total_inexperienced_players'] < inexperienced_players_per_team:
+            elif player['experience'] is False and team_2['total_inexperienced_players'] < inexperienced_players_per_team:
                 add_player_to_team(player, team_2)
                 continue
         if team_3['total_squad_size'] < max_squad_size:
-            if player['experience'] == True and team_3['total_experienced_players'] < experienced_players_per_team:            
+            if player['experience'] is True and team_3['total_experienced_players'] < experienced_players_per_team:
                 add_player_to_team(player, team_3)
                 continue
-            elif player['experience'] == False and team_3['total_inexperienced_players'] < inexperienced_players_per_team:
+            elif player['experience'] is False and team_3['total_inexperienced_players'] < inexperienced_players_per_team:
                 add_player_to_team(player, team_3)
                 continue
 
 
-#This function takes a player and a team and adds the given player to the team while updated team stats
-
+# This function takes a player and a team and adds the given player to the team while updated team stats
 def add_player_to_team(player, team):
     team['total_squad_size'] += 1
     team['players'].append(player['name'])
     team['total_height'] += player['height']
-    if player['experience'] == True:
+    if player['experience'] is True:
         team['total_experienced_players'] += 1
     else:
         team['total_inexperienced_players'] += 1
@@ -96,20 +92,23 @@ def add_player_to_team(player, team):
         team['guardians'].append(guardian)
 
 
+# This function gets the max number of experienced players allowed on a team
 def get_num_of_experienced_players():
     sum = 0
     for player in cleaned_player_data:
-        if player['experience'] == True:
+        if player['experience'] is True:
             sum += 1
     return sum / len(TEAMS)
 
 
+# This function gets the max number of inexperienced players allowed on a team
 def get_num_of_inexperienced_players():
     sum = 0
     for player in cleaned_player_data:
-        if player['experience'] == False:
+        if player['experience'] is False:
             sum += 1
     return sum / len(TEAMS)
+
 
 def display_main_menu():
     print('\n----MENU----\n')
@@ -125,25 +124,18 @@ def display_submenu():
     print(' 3) Warriors')
 
 
+# This function takes in a team and displays the teams stats on screen
 def display_team_stats(team):
-    #show team name
+    players_string = ', '.join(team['players'])
+    guardians_string = ', '.join(team['guardians'])
     print('\nTeam: {0} Stats'.format(team['name']))
     print('-' * 20)
-    #show total players
     print('Total Players: {0}'.format(team['total_squad_size']))
-    #show total experienced players
     print('Total experienced: {0}'.format(team['total_experienced_players']))
-    #show total inexperienced players
     print('Total inexperienced: {0}'.format(team['total_inexperienced_players']))
-    #calcuate and show average height
     print('Average height: {0}\n'.format(team['total_height'] / team['total_squad_size']))
-    #show players on team
-    players_string = ', '.join(team['players'])
     print('Players on Team:\n  {0}\n'.format(players_string))
-    #show guardians of players on team
-    guardians_string = ', '.join(team['guardians'])
     print('Guardians:\n  {0}\n'.format(guardians_string))
-
     input('Press any key to continue...')
 
 
@@ -152,22 +144,16 @@ if __name__ == "__main__":
     balance_teams()
 
     print('BASKETBALL TEAM STATS TOOL\n')
-    
-    #Main Menu loop starts here
+
+    # Main Menu loop starts here
     while(True):
         display_main_menu()
-        #prompt user for selection
         mainmenu_selection = input('\nEnter an option > ')
-        #if submenu selected
         if mainmenu_selection == '1':
-            #show submenu
-            while (True):   
+            # Submenu loop starts here
+            while (True):
                 display_submenu()
-                #prompt user for selection
                 submenu_selection = input('\nEnter an option > ')
-                #if valid selection
-                    #display team info
-                    #exit sub menu
                 if submenu_selection == '1':
                     display_team_stats(team_1)
                     break
@@ -176,17 +162,13 @@ if __name__ == "__main__":
                     break
                 elif submenu_selection == '3':
                     display_team_stats(team_3)
-                    break    
-                #else
+                    break
                 else:
-                    #prompt user for valid selection
                     print('\nThat is not a valid selection. Please try again\n')
-        #if quit selected
+            # end of submenu loop
         elif mainmenu_selection == '2':
-            #exit gracefully
             print('\nExiting application. Goodbye!\n')
             break
-        #else
         else:
-            #prompt user for valid selection
             print('\nThat is not a valid selection. Please try again\n')
+        # end of main menu loop
