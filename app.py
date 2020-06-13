@@ -54,7 +54,7 @@ def balance_teams():
     max_squad_size = len(PLAYERS) / len(TEAMS)
     experienced_players_per_team = get_num_of_experienced_players()
     inexperienced_players_per_team = get_num_of_inexperienced_players()
-
+    
     for player in cleaned_player_data:
         if team_1['total_squad_size'] < max_squad_size:
             if player['experience'] is True and team_1['total_experienced_players'] < experienced_players_per_team:
@@ -77,7 +77,6 @@ def balance_teams():
             elif player['experience'] is False and team_3['total_inexperienced_players'] < inexperienced_players_per_team:
                 add_player_to_team(player, team_3)
                 continue
-
 
 # This function takes a player and a team and adds the given player to the team while updated team stats
 def add_player_to_team(player, team):
